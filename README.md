@@ -2,20 +2,6 @@
 Enterprise-grade Python microservice CI/CD pipeline using Jenkins Declarative Pipelines. Integrates automated GitHub Webhooks, parallel pytest execution, SonarQube quality gates, OWASP/Trivy security scanning, Docker containerization, and Slack notifications.
 
 
-
-Here is a complete, production-ready `README.md` for your GitHub repository, along with a short project description for your repository header.
-
----
-
-### GitHub Repository Description (For the GitHub "About" section)
-
-> Enterprise-grade Python microservice CI/CD pipeline using Jenkins Declarative Pipelines. Integrates automated GitHub Webhooks, parallel pytest execution, SonarQube quality gates, OWASP/Trivy security scanning, Docker containerization, and Slack notifications.
-
----
-
-### `README.md` (Copy & Paste directly into your repository)
-
-```markdown
 # Enterprise Python CI/CD Multistage Pipeline
 
 [![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
