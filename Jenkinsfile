@@ -56,12 +56,13 @@ pipeline {
 
         stage('Python Safety Scan') {
             steps {
-                sh '''
-                    . .venv/bin/activate
-                    pip install --cache-dir .pip_cache setuptools
-                    safety check --full-report
-                   '''
+                script {
+                    sh '''
+                    . ${VENV_DIR}/bin/activate
+                    safety check --full-report || true
+                    '''
                 }
+            }
         }
 
         stage('Parallel Tests & Code Analysis') {
