@@ -193,19 +193,24 @@ pipeline {
         }
 
         success {
-            slackSend(
-                channel: env.SLACK_CHANNEL,
-                color: '#00FF00',
-                message: "SUCCESS: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] (${env.BUILD_URL})"
-            )
+            script {
+                def webhookUrl = credentials('slack-webhook-url')
+                slackSend(
+                    webhookUrl: webhookUrl,
+                    color: '#00FF00',
+                    message: "SUCCESS: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] (${env.BUILD_URL})"
+                )
+            }
         }
 
         failure {
-            slackSend(
-                channel: env.SLACK_CHANNEL,
-                color: '#FF0000',
-                message: "FAILURE: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] (${env.BUILD_URL})"
-            )
+            script {
+                def webhookUrl = credentials('slack-webhook-url')
+                slackSend(
+                    webhookUrl: webhookUrl,
+                    color: '#FF0000',
+                    message: "FAILURE: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] (${env.BUILD_URL})"
+                )
+            }
         }
-    }
 }
