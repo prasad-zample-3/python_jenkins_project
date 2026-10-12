@@ -6,7 +6,7 @@ app = Flask(__name__)
 def home():
     return jsonify({
         "status": "online",
-        "message": "Welcome to the Python Microservice API demo project"
+        "message": "Welcome to the Python Microservice API"
     }), 200
 
 @app.route("/health", methods=["GET"])
