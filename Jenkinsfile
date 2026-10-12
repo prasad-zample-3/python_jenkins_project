@@ -9,7 +9,7 @@ pipeline {
 
     environment {
         APP_NAME         = 'my-python-app'
-        DOCKER_HUB_USER  = 'your-dockerhub-username'
+        DOCKER_HUB_USER  = 'prasad310'
         REGISTRY         = 'docker.io'
         SONAR_HOST_URL   = 'http://3.107.182.188:9000'
         SLACK_CHANNEL    = '#alertmanager'
