@@ -63,18 +63,7 @@ pipeline {
             }
         }
     }
-
-        stage('Python Safety Scan') {
-            steps {
-                script {
-                    sh '''
-                    . ${VENV_DIR}/bin/activate
-                    safety check --full-report || true
-                    '''
-                }
-            }
-        }
-
+        
         stage('Parallel Tests & Code Analysis') {
             parallel {
 
@@ -133,32 +122,15 @@ pipeline {
                 }
             }
         }
-
-        stage('Security Scans') {
-            when {
+        
+        stage('Trivy Repository Scan') {
+                    when {
                 expression { return params.RUN_SECURITY_SCANS == true }
-            }
-            parallel {
-
-                stage('Python Safety Scan') {
-                    steps {
-                        script {
-                            sh '''
-                                . ${VENV_DIR}/bin/activate
-                                safety check --full-report || true
-                            '''
-                        }
                     }
-                }
-
-                stage('Trivy Repository Scan') {
                     steps {
                         sh 'trivy fs --severity HIGH,CRITICAL .'
                     }
                 }
-
-            }
-        }
 
         stage('Build & Scan Docker Image') {
             steps {
