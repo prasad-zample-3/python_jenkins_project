@@ -54,6 +54,16 @@ pipeline {
             }
         }
 
+        stage('Python Safety Scan') {
+            steps {
+                sh '''
+                    . .venv/bin/activate
+                    pip install --cache-dir .pip_cache setuptools
+                    safety check --full-report
+                   '''
+                }
+        }
+
         stage('Parallel Tests & Code Analysis') {
             parallel {
 
