@@ -53,6 +53,16 @@ pipeline {
                 }
             }
         }
+        
+     stage('OWASP Dependency Check') {
+        steps {
+            script {
+                echo "Running OWASP Dependency-Check..."
+                dependencyCheck additionalArguments: '--scan . --disableAssembly', odcInstallation: 'DependencyCheck'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+    }
 
         stage('Python Safety Scan') {
             steps {
